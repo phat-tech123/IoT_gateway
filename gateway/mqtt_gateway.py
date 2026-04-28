@@ -5,7 +5,7 @@ import time
 # --------------------------------------
 # CONFIG
 # --------------------------------------
-LOCAL_BROKER = "127.0.0.1"   # nơi ESP32 gửi về
+LOCAL_BROKER = "127.0.0.1"   
 LOCAL_PORT = 1883
 
 THINGSBOARD_HOST = 'app.coreiot.io'
@@ -26,12 +26,14 @@ tb_client.on_connect = on_connect_tb
 tb_client.connect(THINGSBOARD_HOST, THINGSBOARD_PORT, 60)
 
 
-# --------------------------------------
-# Local MQTT client (nhận từ ESP32)
-# --------------------------------------
+# Local MQTT client 
 local_client = mqtt.Client()
 
 def on_message(client, userdata, msg):
+    print("RAW BYTES:", msg.payload)
+    print("DECODED:", msg.payload.decode(errors='replace'))
+
+
     print("Received:", msg.topic, msg.payload.decode())
 
     try:
@@ -72,7 +74,7 @@ local_client.connect(LOCAL_BROKER, LOCAL_PORT)
 # --------------------------------------
 # RUN
 # --------------------------------------
-tb_client.loop_start()
+tb_client.loop_start()  
 local_client.loop_start()
 
 print("Gateway running...")
