@@ -5,12 +5,12 @@ import time
 # --------------------------------------
 # CONFIG
 # --------------------------------------
-LOCAL_BROKER = "127.0.0.1"   
+LOCAL_BROKER = "192.168.137.1"   
 LOCAL_PORT = 1883
 
 THINGSBOARD_HOST = 'app.coreiot.io'
 THINGSBOARD_PORT = 1883
-ACCESS_TOKEN = 'rHa5SAQEanvnWzXnqDNi'
+ACCESS_TOKEN = 'axxgrd9K6TauZrGJEnyc'
 
 
 # --------------------------------------
@@ -58,6 +58,8 @@ def on_message(client, userdata, msg):
     payload = json.dumps(telemetry)
 
     tb_client.publish('v1/gateway/telemetry', payload)
+    print("TB PAYLOAD:", payload)
+    #tb_client.publish('v1/devices/me/telemetry', json.dumps(data))
     print("Forwarded to TB")
 
 
