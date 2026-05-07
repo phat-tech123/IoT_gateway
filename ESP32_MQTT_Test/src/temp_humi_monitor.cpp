@@ -2,33 +2,43 @@
 
 DHT20 dht20;
 
-void temp_humi_monitor(void *pvParameters) {
-  Wire.begin(11, 12);
-  dht20.begin();
+void temp_humi_monitor(void *pvParameters){
 
-  while (1) {
-    if (dht20.read()) {
-      float temperature = dht20.getTemperature();
-      float humidity = dht20.getHumidity();
+    Wire.begin(11, 12);
+    Serial.begin(115200);
+    dht20.begin();
 
-      if (isnan(temperature) || isnan(humidity)) {
-        Serial.println("Failed to read from DHT20 sensor!");
-        temperature = -1;
-        humidity = -1;
-      }
+    while (1){
+        /* code */
+        
+        dht20.read();
+        // Reading temperature in Celsius
+        float temperature = dht20.getTemperature();
+        // Reading humidity
+        float humidity = dht20.getHumidity();
 
-      glob_temperature = temperature;
-      glob_humidity = humidity;
+        
 
-      Serial.print("Temperature: ");
-      Serial.print(temperature);
-      Serial.print(" °C, Humidity: ");
-      Serial.print(humidity);
-      Serial.println(" %");
-    } else {
-      Serial.println("DHT20 read failed");
+        // Check if any reads failed and exit early
+        if (isnan(temperature) || isnan(humidity)) {
+            Serial.println("Failed to read from DHT sensor!");
+            temperature = humidity =  -1;
+            //return;
+        }
+
+        //Update global variables for temperature and humidity
+        glob_temperature = temperature;
+        glob_humidity = humidity;
+
+        // Print the results
+        
+        Serial.print("Humidity: ");
+        Serial.print(humidity);
+        Serial.print("%  Temperature: ");
+        Serial.print(temperature);
+        Serial.println("°C");
+        
+        vTaskDelay(5000);
     }
-
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
-  }
+    
 }

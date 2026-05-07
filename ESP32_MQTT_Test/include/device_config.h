@@ -2,7 +2,7 @@
 #define DEVICE_CONFIG_H
 
 // Chọn thiết bị khi biên dịch: 1 = ESP1, 2 = ESP2
-#define ESP_DEVICE_ID 1
+#define ESP_DEVICE_ID 2
 
 #if ESP_DEVICE_ID == 1
 #define ESP_IS_ESP1 1

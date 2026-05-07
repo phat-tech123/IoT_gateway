@@ -20,7 +20,7 @@ PubSubClient client(espClient);
 float glob_temperature = 0.0;
 float glob_humidity = 0.0;
 float ai_result = 0.0;
-boolean led_enable = false;
+boolean led_enable = true;
 boolean alarm_warning = false;
 boolean telemetry_available = false;
 
@@ -129,7 +129,7 @@ void publishStatus() {
   payload += "\"status\":\"online\",";
   payload += "\"rssi\":" + String(WiFi.RSSI());
 #else
-  payload += "\"ai_running\":true";
+  payload += "\"status\":\"online\"";
 #endif
   payload += "}";
   client.publish(ESP_STATUS_TOPIC, payload.c_str(), true);
