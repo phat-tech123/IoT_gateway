@@ -18,10 +18,10 @@ netsh advfirewall firewall add rule name="MQTT_1883" dir=in action=allow protoco
 ```
 .\mosquitto.exe -c mosquitto.conf -v
 ```
-
+(Terminal 2 & 3 used for testing)
 ### Terminal 2
 ```
-Terminal 2 — Subscribe (test MQTT)
+.\mosquitto_sub.exe -h 192.168.137.1 -t test
 ```
 
 ### Terminal 3 — Publish test message
