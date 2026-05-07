@@ -41,6 +41,11 @@ void tiny_ml_task(void *pvParameters) {
   setupTinyML();
 
   while (1) {
+    if (!telemetry_available) {
+      vTaskDelay(1000 / portTICK_PERIOD_MS);
+      continue;
+    }
+
     if (input && output) {
       input->data.f[0] = glob_temperature;
       input->data.f[1] = glob_humidity;

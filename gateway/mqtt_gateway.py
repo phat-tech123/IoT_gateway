@@ -10,7 +10,7 @@ LOCAL_PORT = 1883
 
 THINGSBOARD_HOST = 'app.coreiot.io'
 THINGSBOARD_PORT = 1883
-ACCESS_TOKEN = 'axxgrd9K6TauZrGJEnyc'
+ACCESS_TOKEN = 'g5fqNKTTwyhgEkO9NVKC'
 
 
 # --------------------------------------
