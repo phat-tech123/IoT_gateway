@@ -20,7 +20,7 @@ LOCAL_TOPICS = [
 ]
 STATUS_TIMEOUT_SECONDS = 20
 STATUS_CHECK_INTERVAL = 5
-DEBUG_LOCAL_MESSAGES = False
+DEBUG_LOCAL_MESSAGES = True
 last_status_timestamps = {
     "esp1": 0,
     "esp2": 0,
